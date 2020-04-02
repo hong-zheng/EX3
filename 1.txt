@@ -1,0 +1,406 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+// slist.h
+typedef int SLTDateType;
+typedef struct SListNode
+{
+	SLTDateType data;
+	struct SListNode* next;
+}SListNode;
+//typedef struct SList{
+//	struct SListNode* head;
+//};
+// 动态申请一个节点
+SListNode* BuySListNode(SLTDateType x){
+	SListNode* head = (SListNode*)malloc(sizeof(SListNode));
+	head->data = x;
+	head->next = NULL;
+	return head;
+}
+// 单链表打印
+void SListPrint(SListNode* plist){
+	SListNode* cur = plist;
+	while (cur){
+		printf("%d ",cur->data);
+		cur = cur->next;
+	}
+	printf("\n");
+}
+// 单链表尾插
+void SListPushBack(SListNode** pplist, SLTDateType x){
+	if (NULL == *pplist){
+		return;
+	}
+	SListNode* cur = *pplist;
+	while (cur && cur->next){
+		cur = cur->next;
+	}
+	SListNode* newnode = BuySListNode(x);
+	cur->next = newnode;
+	newnode->next = NULL;
+}
+// 单链表的头插
+void SListPushFront(SListNode** pplist, SLTDateType x){
+	if (NULL == *pplist){
+		return;
+	}
+	SListNode* newnode = BuySListNode(x);
+	SListNode* cur = *pplist;
+	while (cur){
+		
+	}
+}
+// 单链表的尾删
+void SListPopBack(SListNode** pplist){
+
+}
+// 单链表头删
+void SListPopFront(SListNode** pplist){
+
+}
+// 单链表查找
+SListNode* SListFind(SListNode* plist, SLTDateType x){
+	return NULL;
+}
+// 单链表在pos位置之后插入x
+// 分析思考为什么不在pos位置之前插入？
+void SListInsertAfter(SListNode* pos, SLTDateType x){
+
+}
+// 单链表删除pos位置之后的值
+// 分析思考为什么不删除pos位置？
+void SListEraseAfter(SListNode* pos){
+
+}
+// 单链表的销毁
+void SListDestory(SListNode* plist){
+
+}
+void test1(){
+	SListNode* head = BuySListNode(1);
+	SListPushBack(&head, 2);
+	SListPushBack(&head, 3);
+	SListPushBack(&head, 4);
+	SListPushBack(&head, 5);
+	SListPushBack(&head, 6);
+	SListPrint(head);
+}
+
+int main(){
+
+	system("pause");
+	return 0;
+}
+//// 快速排序
+//// 返回中间结点位置
+//int piv(int* arr,int l,int h){
+//	int indx = arr[l];
+//	while (l<h){
+//		while (l<h && arr[h]>=indx){
+//			h--;
+//		}
+//		arr[l] = arr[h];
+//		while (l<h&&arr[l]<indx){
+//			l++;
+//		}
+//		arr[h] = arr[l];
+//	}
+//	arr[l] = indx;
+//	return l;
+//}
+//void QSort(int* arr, int l ,int h){
+//	if (l<h){
+//		int m = piv(arr,l,h);
+//		QSort(arr, l, m - 1);
+//		QSort(arr, m+1, h);
+//	}
+//}
+//void QSORT(int* arr,int length){
+//	QSort(arr, 0, length-1);
+//}
+//int main(){
+//	int arr[] = {432,9,0,1,32,9,37,0,10,3,7,8,5,36};
+//	QSORT(arr,sizeof(arr)/sizeof(arr[0]));
+//	for (int i = 0; i < sizeof(arr) / sizeof(arr[0]);i++){
+//		printf("%d ",arr[i]);
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+
+//// 插入排序
+//void insert_sort(int* arr,int length){
+//	for (int i = 1; i < length;i++){
+//		if (arr[i] < arr[i-1]){
+//			int j = 0;
+//			int cur = arr[i];
+//			for (j = i - 1; i >= 0 && arr[j] > cur;j--){
+//				arr[j + 1] = arr[j];
+//			}
+//			arr[j + 1] = cur;
+//		}
+//	}
+//}
+//// 希尔排序
+//void shellSort(int* arr,int length){
+//	int step = length / 2;
+//	while (step>=1){
+//		for (int i = step; i < length;i++){
+//			if (arr[i] < arr[i-1]){
+//				int j = 0;
+//				int cur = arr[i];
+//				for (j = i - step; j >= 0 && arr[j] > cur;j-=step){
+//					arr[j + step] = arr[j];
+//				}
+//				arr[j + step] = cur;
+//			}
+//		}
+//		step /= 2;
+//	}
+//}
+//// 归并排序
+//void merge(int* arr,int l,int m,int r){
+//	int len = r - l + 1;
+//	int* newArr = (int*)malloc(sizeof(int)*len);
+//	int left = l;
+//	int right = m+1;
+//	int k = 0;
+//	while (left<=m && right<=r){
+//		if (arr[left] < arr[right]){
+//			newArr[k++] = arr[left++];
+//		}
+//		else{
+//			newArr[k++] = arr[right++];
+//		}
+//	}
+//	while (left<=m){
+//		newArr[k++] = arr[left++];
+//	}
+//	while (right<=r){
+//		newArr[k++] = arr[right++];
+//	}
+//	memcpy(arr+l,newArr,sizeof(int)*len);
+//	free(newArr);
+//	newArr = NULL;
+//}
+//void chaifen(int* arr,int l,int r){
+//	if (l == r){
+//		return;
+//	}
+//	int m = l + (r - l) / 2;
+//	chaifen(arr, l, m);
+//	chaifen(arr, m+1, r);
+//	merge(arr,l,m,r);
+//}
+//void MERGE(int* arr,int len){
+//	chaifen(arr,0,len-1);
+//}
+//
+//
+//// 快速排序
+//int piv(int* arr,int l,int h){
+//	int cur = arr[l];
+//	while (l<h){
+//		while (l<h && cur<=arr[h]){
+//			h--;
+//		}
+//		arr[l] = arr[h];
+//		while (l<h && cur>arr[l]){
+//			l++;
+//		}
+//		arr[h] = arr[l];
+//	}
+//	arr[l] = cur;
+//	return l;
+//}
+//void QSort(int* arr,int l,int h){
+//	if (l<h){
+//		int pivindx = piv(arr, l, h);
+//		QSort(arr, l, pivindx - 1);
+//		QSort(arr, pivindx + 1, h);
+//	}
+//}
+//void QSORT(int* arr,int len){
+//	QSort(arr,0,len-1);
+//}
+//
+//
+//void move(char A,char B){
+//	printf("%c -> %c\n",A,B);
+//}
+//
+//void hanio(int n,char one,char two,char three){
+//	if (1 == n){
+//		move(one,three);
+//	}
+//	else
+//	{
+//		hanio(n - 1, one, three, two);
+//		move(one, three);
+//		hanio(n - 1, two, one, three);
+//	}
+//}
+// 一轮快速排序的结果，返回中间对比值位置
+//int piv(int* arr,int l,int h){
+//	int indx = arr[l];
+//	while (l<h){
+//		while (l<h && arr[h]>=indx){
+//			h--;
+//		}
+//		arr[l] = arr[h];
+//		while (l<h && arr[l]<indx){
+//			l++;
+//		}
+//		arr[h] = arr[l];
+//	}
+//	arr[l] = indx;
+//	return l;
+//}
+//// 递归排序，直到中间为止
+//void QSort(int* arr,int l,int h){
+//	if (l<h){
+//		int pivindx = piv(arr,l,h);
+//		QSort(arr, l, pivindx - 1);
+//		QSort(arr, pivindx+1,h);
+//	}
+//}
+//void QSORT(int* arr,int len){
+//	QSort(arr,0,len-1);
+//}
+////归并排序
+//// 先归并
+//void merge(int* arr,int l,int m,int r){
+//	int len = r - l + 1;
+//	int* newArr = (int*)malloc(sizeof(int)*len);
+//	int k = 0;
+//	int left = l;
+//	int right = m + 1;
+//	while (left<=m && right<=r){
+//		if (arr[left] < arr[right]){
+//			newArr[k++] = arr[left++];
+//		}
+//		else{
+//			newArr[k++] = arr[right++];
+//		}
+//	}
+//	while (left<=m){
+//		newArr[k++] = arr[left++];
+//	}
+//	while (right<=r){
+//		newArr[k++] = arr[right++];
+//	}
+//	memcpy(arr+l,newArr,sizeof(int)*len);
+//	free(newArr);
+//	newArr = NULL;
+//}
+//void chaifen(int* arr,int l,int r){
+//	if (l == r){
+//		return;
+//	}
+//	int m = l + (r - l) / 2;
+//	chaifen(arr, l, m);
+//	chaifen(arr, m+1, r);
+//	merge(arr,l,m,r);
+//}
+//void MERGE(int* arr,int len){
+//	chaifen(arr,0,len-1);
+//}
+//
+//// 插入排序
+//void insert(int* arr,int length){
+//	for (int i = 1; i < length;i++){
+//		if (arr[i] < arr[i-1]){
+//			int j = 0;
+//			int cur = arr[i];
+//			for (j = i - 1; j >= 0 && arr[j] > cur;j--){
+//				arr[j + 1] = arr[j];
+//			}
+//			arr[j + 1] = cur;
+//		}
+//	}
+//}
+////希尔排序
+//void shellSort(int* arr,int length){
+//	int step = length / 2;
+//	while (step>=1){
+//		for (int i = step; i < length;i++){
+//			for (int j = 1; j < length;j++){
+//				if (arr[j] < arr[j-1]){
+//					int k = 0;
+//					int cur = arr[j];
+//					for (k = j - step; k >= 0 && cur < arr[k];k-=step){
+//						arr[k + step] = arr[k];
+//					}
+//					arr[k + step] = cur;
+//				}
+//			}
+//		}
+//		step /= 2;
+//	}
+//}
+//#define LEN 19
+//#define MAXNUM 432
+//void radix(int* arr,int length){
+//	int tmp[MAXNUM+1];
+//	memset(tmp,0,sizeof(int)*(MAXNUM+1));
+//	for (int i = 0; i < length;i++){
+//		tmp[arr[i]]++;
+//	}
+//	for (int i = 0; i < MAXNUM + 1;i++){
+//		while (tmp[i]--){
+//			printf("%d ",i);
+//		}
+//	}
+//	printf("\n");
+//}
+//void bucket(int* arr,int length){
+//	for (int i = 1; i < MAXNUM;i*=10){
+//		int tmp[10][LEN];
+//		memset(tmp, -1, sizeof(int)*LEN * 10);
+//		for (int j = 0; j < length;j++){
+//			int m = arr[j] / i % 10;
+//			tmp[m][j] = arr[j];
+//		}
+//		int k = 0;
+//		for (int i = 0; i < 10;i++){
+//			for (int j = 0; j < LEN;j++){
+//				if (-1 != tmp[i][j]){
+//					arr[k++] = tmp[i][j];
+//				}
+//			}
+//		}
+//	}
+//}
+//// 选择排序
+//void select(int* arr,int length){
+//	for (int i = 0; i < length;i++){
+//		int cur = arr[i];
+//		int flag = -1;
+//		for (int j = i + 1; j < length;j++){
+//			if (arr[j] < cur){
+//				cur = arr[j];
+//				flag = j;
+//			}
+//		}
+//		if (flag>0){
+//			arr[flag] = arr[i];
+//			arr[i] = cur;
+//		}
+//	}
+//}
+//int main(){
+//	
+//
+//
+//
+//	int arr[] = {1,432,9,0,1,32,9,74,32,8,9,37,0,10,3,7,8,5,36};
+//	select(arr, sizeof(arr) / sizeof(arr[0]));
+//	for (int i = 0; i < sizeof(arr) / sizeof(arr[0]);i++){
+//		printf("%d ",arr[i]);
+//	}
+//	system("pause");
+//	return 0;
+//}
